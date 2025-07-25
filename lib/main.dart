@@ -33,8 +33,10 @@ class _UTipState extends State<UTip> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-       title: const Text('UTip'), 
+      appBar: AppBar(title: const Text('UTip')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [const Text('Hello there')],
       ),
     );
   }
