@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Utip',
       theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
       ),
       home: const UTip(),
     );
   }
 }
-
 
 class UTip extends StatefulWidget {
   const UTip({super.key});
@@ -32,6 +32,10 @@ class UTip extends StatefulWidget {
 class _UTipState extends State<UTip> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+       title: const Text('UTip'), 
+      ),
+    );
   }
 }
