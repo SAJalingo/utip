@@ -16,9 +16,22 @@ class MyApp extends StatelessWidget {
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: null,
+      home: const UTip(),
     );
   }
 }
 
 
+class UTip extends StatefulWidget {
+  const UTip({super.key});
+
+  @override
+  State<UTip> createState() => _UTipState();
+}
+
+class _UTipState extends State<UTip> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
