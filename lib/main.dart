@@ -35,8 +35,23 @@ class _UTipState extends State<UTip> {
     return Scaffold(
       appBar: AppBar(title: const Text('UTip')),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [const Text('Hello there')],
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.deepPurple,
+              borderRadius: BorderRadius.circular(
+                10,
+              ),
+            ),
+            child: const Column(
+              children: [
+                Text('Total per Person'),
+                Text('\$200.23'),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
