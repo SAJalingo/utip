@@ -82,14 +82,13 @@ class _UTipState extends State<UTip> {
             ),
             //form
             Container(
-              margin: EdgeInsets.fromLTRB(
+              margin: const EdgeInsets.fromLTRB(
                 0,
                 8,
                 0,
                 8,
               ),
-              width: 100,
-              height: 100,
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(5),
@@ -98,6 +97,27 @@ class _UTipState extends State<UTip> {
                       theme.colorScheme.primary,
                   width: 2,
                 ),
+              ),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration:
+                        const InputDecoration(
+                          border:
+                              OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.attach_money,
+                          ),
+                          labelText:
+                              'Bill Amount',
+                        ),
+                    keyboardType:
+                        TextInputType.number,
+                    onChanged: (String value) {
+                      print('value: $value');
+                    },
+                  ),
+                ],
               ),
             ),
           ],
