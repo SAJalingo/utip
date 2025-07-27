@@ -39,7 +39,7 @@ class _UTipState extends State<UTip> {
           color: theme.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
         );
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(title: const Text('UTip')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -82,6 +82,14 @@ class _UTipState extends State<UTip> {
             ),
             //form
             Container(
+              margin: EdgeInsets.fromLTRB(
+                0,
+                8,
+                0,
+                8,
+              ),
+              width: 100,
+              height: 100,
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(5),
