@@ -39,47 +39,61 @@ class _UTipState extends State<UTip> {
           color: theme.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
         );
-    return Scaffold(
+    return Scaffold( 
       appBar: AppBar(title: const Text('UTip')),
-      body: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color:
-                  theme
-                      .colorScheme
-                      .inversePrimary,
-              borderRadius: BorderRadius.circular(
-                10,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment:
+              CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color:
+                    theme
+                        .colorScheme
+                        .inversePrimary,
+                borderRadius:
+                    BorderRadius.circular(10),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Total per Person',
+                    style: style,
+                  ),
+                  Text(
+                    '\$200.23',
+                    style: style.copyWith(
+                      color:
+                          theme
+                              .colorScheme
+                              .onPrimary,
+                      fontSize:
+                          theme
+                              .textTheme
+                              .displaySmall
+                              ?.fontSize,
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: Column(
-              children: [
-                Text(
-                  'Total per Person',
-                  style: style,
+            //form
+            Container(
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.circular(5),
+                border: Border.all(
+                  color:
+                      theme.colorScheme.primary,
+                  width: 2,
                 ),
-                Text(
-                  '\$200.23',
-                  style: style.copyWith(
-                    color:
-                        theme
-                            .colorScheme
-                            .onPrimary,
-                    fontSize:
-                        theme
-                            .textTheme
-                            .displaySmall
-                            ?.fontSize,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
