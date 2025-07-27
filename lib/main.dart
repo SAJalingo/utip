@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Utip',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.amber,
+          seedColor: Colors.deepPurple,
         ),
       ),
       home: const UTip(),
@@ -33,6 +33,12 @@ class _UTipState extends State<UTip> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    //Add style
+    final style = theme.textTheme.titleMedium!
+        .copyWith(
+          color: theme.colorScheme.onPrimary,
+          fontWeight: FontWeight.bold,
+        );
     return Scaffold(
       appBar: AppBar(title: const Text('UTip')),
       body: Column(
@@ -54,15 +60,21 @@ class _UTipState extends State<UTip> {
               children: [
                 Text(
                   'Total per Person',
-                  style:
-                      theme.textTheme.titleMedium,
+                  style: style,
                 ),
                 Text(
                   '\$200.23',
-                  style:
-                      theme
-                          .textTheme
-                          .displaySmall,
+                  style: style.copyWith(
+                    color:
+                        theme
+                            .colorScheme
+                            .onPrimary,
+                    fontSize:
+                        theme
+                            .textTheme
+                            .displaySmall
+                            ?.fontSize,
+                  ),
                 ),
               ],
             ),
