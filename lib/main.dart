@@ -84,11 +84,11 @@ class _UTipState extends State<UTip> {
             Container(
               margin: const EdgeInsets.fromLTRB(
                 0,
-                8,
+                16,
                 0,
-                8,
+                16,
               ),
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(5),
@@ -116,6 +116,28 @@ class _UTipState extends State<UTip> {
                     onChanged: (String value) {
                       print('value: $value');
                     },
+                  ),
+                  //split bill area
+                  Row(
+                    children: [
+                      Text(
+                        'Split',
+                        style:
+                            theme
+                                .textTheme
+                                .titleMedium,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: null,
+                            icon: Icon(
+                              Icons.remove,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
