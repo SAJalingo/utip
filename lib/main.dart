@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:utip/widgets/personCounter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -130,9 +131,7 @@ class _UTipState extends State<UTip> {
                         ),
                     keyboardType:
                         TextInputType.number,
-                    onChanged: (String value) {
-                      print('value: $value');
-                    },
+                    onChanged: (String value) {},
                   ),
                   //split bill area
                   Row(
@@ -147,36 +146,11 @@ class _UTipState extends State<UTip> {
                                 .textTheme
                                 .titleMedium,
                       ),
-                      Row(
-                        children: [
-                          IconButton(
-                            color:
-                                theme
-                                    .colorScheme
-                                    .primary,
-                            onPressed: decreament,
-                            icon: const Icon(
-                              Icons.remove,
-                            ),
-                          ),
-                          Text(
-                            '$personCount',
-                            style:
-                                theme
-                                    .textTheme
-                                    .titleMedium,
-                          ),
-                          IconButton(
-                            color:
-                                theme
-                                    .colorScheme
-                                    .primary,
-                            onPressed: increament,
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
+                      PersonCounter(
+                        theme: theme,
+                        personCount: personCount,
+                        onDecreament: decreament,
+                        onIncreament: increament,
                       ),
                     ],
                   ),
