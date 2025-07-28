@@ -119,6 +119,9 @@ class _UTipState extends State<UTip> {
                   ),
                   //split bill area
                   Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment
+                            .spaceBetween,
                     children: [
                       Text(
                         'Split',
@@ -130,9 +133,30 @@ class _UTipState extends State<UTip> {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: null,
-                            icon: Icon(
+                            color:
+                                theme
+                                    .colorScheme
+                                    .primary,
+                            onPressed: () => {},
+                            icon: const Icon(
                               Icons.remove,
+                            ),
+                          ),
+                          Text(
+                            '3',
+                            style:
+                                theme
+                                    .textTheme
+                                    .titleMedium,
+                          ),
+                          IconButton(
+                            color:
+                                theme
+                                    .colorScheme
+                                    .primary,
+                            onPressed: () => {},
+                            icon: const Icon(
+                              Icons.add,
                             ),
                           ),
                         ],
