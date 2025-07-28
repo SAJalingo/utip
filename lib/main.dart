@@ -33,6 +33,8 @@ class UTip extends StatefulWidget {
 class _UTipState extends State<UTip> {
   int personCount = 1;
 
+  double tipPercentage = 0.0;
+
   //Methods
   void increament() {
     setState(() {
@@ -153,6 +155,49 @@ class _UTipState extends State<UTip> {
                         onIncreament: increament,
                       ),
                     ],
+                  ),
+
+                  //Tip section
+                  Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment
+                            .spaceBetween,
+                    children: [
+                      Text(
+                        'Tip',
+                        style:
+                            theme
+                                .textTheme
+                                .titleMedium,
+                      ),
+                      Text(
+                        '\$20',
+                        style:
+                            theme
+                                .textTheme
+                                .titleMedium,
+                      ),
+                    ],
+                  ),
+
+                  //slider text
+                  Text(
+                    '${(tipPercentage * 100).round()}%',
+                  ),
+
+                  //Tip slider
+                  Slider(
+                    value: tipPercentage,
+                    onChanged: (value) {
+                      setState(() {
+                        tipPercentage = value;
+                      });
+                    },
+                    min: 0.0,
+                    max: 0.5,
+                    label:
+                        '${(tipPercentage * 100).round()}%',
+                    divisions: 5,
                   ),
                 ],
               ),
