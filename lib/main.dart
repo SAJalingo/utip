@@ -36,6 +36,17 @@ class _UTipState extends State<UTip> {
   int personCount = 1;
 
   double tipPercentage = 0.0;
+  double billTotal = 0.0;
+
+  double totalPerPerson() {
+    return ((billTotal * tipPercentage) +
+            (billTotal)) /
+        personCount;
+  }
+
+  double totalTip() {
+    return (billTotal * tipPercentage);
+  }
 
   //Methods
   void increament() {
@@ -46,7 +57,7 @@ class _UTipState extends State<UTip> {
 
   void decreament() {
     setState(() {
-      if (personCount > 0) {
+      if (personCount > 1) {
         personCount--;
       }
     });
@@ -54,7 +65,10 @@ class _UTipState extends State<UTip> {
 
   @override
   Widget build(BuildContext context) {
+    double total = totalPerPerson();
+    double totalT = totalTip();
     var theme = Theme.of(context);
+
     //Add style
     final style = theme.textTheme.titleMedium!
         .copyWith(
@@ -86,7 +100,7 @@ class _UTipState extends State<UTip> {
                     style: style,
                   ),
                   Text(
-                    '\$200.23',
+                    '$total',
                     style: style.copyWith(
                       color:
                           theme
@@ -123,9 +137,15 @@ class _UTipState extends State<UTip> {
               child: Column(
                 children: [
                   BillAmountField(
-                    billAmount: '100',
+                    billAmount:
+                        billTotal.toString(),
                     onChanged: (value) {
-                      print('Amonut: $value');
+                      setState(() {
+                        billTotal = double.parse(
+                          value,
+                        );
+                      });
+                      // print('Amonut: $value');
                     },
                   ),
                   //split bill area
@@ -164,7 +184,7 @@ class _UTipState extends State<UTip> {
                                 .titleMedium,
                       ),
                       Text(
-                        '\$20',
+                        '$totalT',
                         style:
                             theme
                                 .textTheme
