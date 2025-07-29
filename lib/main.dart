@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:utip/widgets/bill_amount_field.dart';
 import 'package:utip/widgets/person_counter.dart';
 import 'package:utip/widgets/tip_slider.dart';
+import 'package:utip/widgets/total_per_person.dart';
 
 void main() {
   runApp(const MyApp());
@@ -83,38 +84,10 @@ class _UTipState extends State<UTip> {
           crossAxisAlignment:
               CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color:
-                    theme
-                        .colorScheme
-                        .inversePrimary,
-                borderRadius:
-                    BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    'Total per Person',
-                    style: style,
-                  ),
-                  Text(
-                    '$total',
-                    style: style.copyWith(
-                      color:
-                          theme
-                              .colorScheme
-                              .onPrimary,
-                      fontSize:
-                          theme
-                              .textTheme
-                              .displaySmall
-                              ?.fontSize,
-                    ),
-                  ),
-                ],
-              ),
+            TotalPerPerson(
+              theme: theme,
+              style: style,
+              total: total,
             ),
             //form
             Container(
@@ -184,7 +157,7 @@ class _UTipState extends State<UTip> {
                                 .titleMedium,
                       ),
                       Text(
-                        '$totalT',
+                        totalT.toStringAsFixed(2),
                         style:
                             theme
                                 .textTheme
