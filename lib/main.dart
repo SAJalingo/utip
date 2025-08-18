@@ -34,16 +34,9 @@ class UTip extends StatefulWidget {
 }
 
 class _UTipState extends State<UTip> {
-  int personCount = 1;
+  
 
-  double tipPercentage = 0.0;
-  double billTotal = 0.0;
-
-  double totalPerPerson() {
-    return ((billTotal * tipPercentage) +
-            (billTotal)) /
-        personCount;
-  }
+ 
 
   double totalTip() {
     return (billTotal * tipPercentage);
