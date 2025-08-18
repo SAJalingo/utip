@@ -36,31 +36,9 @@ class UTip extends StatefulWidget {
 class _UTipState extends State<UTip> {
   
 
- 
-
-  double totalTip() {
-    return (billTotal * tipPercentage);
-  }
-
-  //Methods
-  void increament() {
-    setState(() {
-      personCount++;
-    });
-  }
-
-  void decreament() {
-    setState(() {
-      if (personCount > 1) {
-        personCount--;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    double total = totalPerPerson();
-    double totalT = totalTip();
+    
     var theme = Theme.of(context);
 
     //Add style
