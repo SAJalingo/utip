@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utip/Providers/TipCalculatorModel.dart';
 import 'package:utip/widgets/bill_amount_field.dart';
 import 'package:utip/widgets/person_counter.dart';
 import 'package:utip/widgets/tip_slider.dart';
 import 'package:utip/widgets/total_per_person.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (BuildContext context) {  },
-  child: const MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TipCalculatorModel(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,13 +41,12 @@ class UTip extends StatefulWidget {
 }
 
 class _UTipState extends State<UTip> {
-  
-
   @override
   Widget build(BuildContext context) {
-    
     var theme = Theme.of(context);
-
+    final model = Provider.of<TipCalculatorModel>(
+      context,
+    );
     //Add style
     final style = theme.textTheme.titleMedium!
         .copyWith(
@@ -60,7 +64,7 @@ class _UTipState extends State<UTip> {
             TotalPerPerson(
               theme: theme,
               style: style,
-              total: total,
+              total: model.totalPerPerson,
             ),
             //form
             Container(
@@ -84,13 +88,12 @@ class _UTipState extends State<UTip> {
                 children: [
                   BillAmountField(
                     billAmount:
-                        billTotal.toString(),
+                        model.billTotal
+                            .toString(),
                     onChanged: (value) {
-                      setState(() {
-                        billTotal = double.parse(
-                          value,
-                        );
-                      });
+                      model.updateBillTotal(
+                        double.parse(value),
+                      );
                       // print('Amonut: $value');
                     },
                   ),
@@ -109,9 +112,21 @@ class _UTipState extends State<UTip> {
                       ),
                       PersonCounter(
                         theme: theme,
-                        personCount: personCount,
-                        onDecreament: decreament,
-                        onIncreament: increament,
+                        personCount:
+                            model.personCount,
+                        onDecreament: () {
+                          if (model.personCount >
+                              1) {
+                            model.updatePersonCount(
+                              model.personCount-1,
+                            );
+                          }
+                        },
+                        onIncreament: () {
+                          model.updatePersonCount(
+                            model.personCount + 1,
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -130,7 +145,8 @@ class _UTipState extends State<UTip> {
                                 .titleMedium,
                       ),
                       Text(
-                        totalT.toStringAsFixed(2),
+                        model.tipPercentage
+                            .toString(),
                         style:
                             theme
                                 .textTheme
@@ -141,16 +157,17 @@ class _UTipState extends State<UTip> {
 
                   //slider text
                   Text(
-                    '${(tipPercentage * 100).round()}%',
+                    '${(model.tipPercentage * 100).round()}%',
                   ),
 
                   //Tip slider
                   TipSlider(
-                    tipPercentage: tipPercentage,
+                    tipPercentage:
+                        model.tipPercentage,
                     onChanged: (double value) {
-                      setState(() {
-                        tipPercentage = value;
-                      });
+                      model.updateTipPercentage(
+                        value,
+                      );
                     },
                   ),
                 ],
