@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utip/Providers/ThemeProvider.dart';
 import 'package:utip/Providers/TipCalculatorModel.dart';
 import 'package:utip/widgets/bill_amount_field.dart';
 import 'package:utip/widgets/person_counter.dart';
@@ -8,8 +9,16 @@ import 'package:utip/widgets/total_per_person.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => TipCalculatorModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create:
+              (context) => TipCalculatorModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -47,6 +56,8 @@ class _UTipState extends State<UTip> {
     final model = Provider.of<TipCalculatorModel>(
       context,
     );
+    final themeProvider =
+        Provider.of<ThemeProvider>(context);
     //Add style
     final style = theme.textTheme.titleMedium!
         .copyWith(
@@ -54,7 +65,15 @@ class _UTipState extends State<UTip> {
           fontWeight: FontWeight.bold,
         );
     return Scaffold(
-      appBar: AppBar(title: const Text('UTip')),
+      appBar: AppBar(
+        title: const Text('UTip'),
+        actions: [
+          IconButton(
+            onPressed: null,
+            icon:themeProvider.isDarkMode? Icon(Icons.wb_sunny):Icon(Icons.nightlight_round),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
@@ -118,7 +137,8 @@ class _UTipState extends State<UTip> {
                           if (model.personCount >
                               1) {
                             model.updatePersonCount(
-                              model.personCount-1,
+                              model.personCount -
+                                  1,
                             );
                           }
                         },
